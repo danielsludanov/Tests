@@ -102,6 +102,7 @@ namespace Tests.Pages
         private void NextQuestion_Btn_Click(object sender, RoutedEventArgs e)
         {
             var selectedAnswer = GetAnswer();
+
             if (selectedAnswer != null && (bool)selectedAnswer.Tag)
             {
                 RightAnswer++;
@@ -121,12 +122,16 @@ namespace Tests.Pages
             }
             else
             {
+
                 MessageBoxResult result = MessageBox.Show("Вопросы кончились, завершить тест?", "Тест", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
+                    
                     SP_Test.Visibility = Visibility.Collapsed;
                     mark_box.Visibility = Visibility.Visible;
                     mark_box.Text = $"Оценка - {StudentMark}";
+
+                    
                     MarkToDB(StudentMark);
                 }
             }
@@ -163,14 +168,13 @@ namespace Tests.Pages
                     MessageBox.Show("Ошибка: студент не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                {
-                    
-                }
+
+                
                 var studentMark = new test_results
                 {
                     test_id = CurrentTestID,
                     student_id = student.student_id,
-                    test_duration_minutes = 60,
+                    test_duration_minutes = 60, 
                     mark = mark
                 };
 
@@ -181,7 +185,6 @@ namespace Tests.Pages
             {
                 MessageBox.Show(ex.Message);
             }
-            
         }
     }
 

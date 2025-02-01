@@ -31,5 +31,6 @@ namespace Tests
         public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<test_results> test_results { get; set; }
+        public string FullName => $"{last_name} {first_name} {second_name}".Trim();
     }
 }
