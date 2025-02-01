@@ -1,60 +1,97 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Tests.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddTestPage.xaml
-    /// </summary>
     public partial class AddTestPage : Page
     {
         private readonly TestsEntities db;
-        public AddTestPage()
+        private test currentTest;
+        private question currentQuestion;
+        public AddTestPage(test testToEdit = null, question questionToEdit = null)
         {
             InitializeComponent();
             db = new TestsEntities();
+            if (testToEdit != null)
+            {
+                currentTest = testToEdit;
+                
+                NameTest.Text = testToEdit.test_name;
+            }
+
+            if (questionToEdit != null)
+            {
+                currentQuestion = questionToEdit;
+                
+                NameQuestion.Text = questionToEdit.question_text;
+                Ans1.Text = questionToEdit.answer_1;
+                Ans2.Text = questionToEdit.answer_2;
+                Ans3.Text = questionToEdit.answer_3;
+                Ans4.Text = questionToEdit.answer_4;
+                CorrectAnswer.Text = questionToEdit.correct_answer.ToString();
+            }
+
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                // Получаем название теста из поля ввода
                 string testName = NameTest.Text.Trim();
-
-                // Проверка на пустое имя теста
                 if (string.IsNullOrEmpty(testName))
                 {
                     MessageBox.Show("Введите название теста", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                // Создаем новый тест в базе данных
-                var test = new test
+                if (currentTest == null)
                 {
-                    test_name = testName,
-                    test_date = DateTime.Now // Пример: тест создается сегодня
-                };
+                    
+                    currentTest = new test
+                    {
+                        test_name = testName,
+                        test_date = DateTime.Now
+                    };
+                    db.tests.Add(currentTest);
+                }
+                else
+                {
+                    
+                    currentTest.test_name = testName;
+                }
 
-                db.tests.Add(test);
-                db.SaveChanges(); // Сохраняем тест в БД
+                db.SaveChanges();
 
-                // Теперь добавляем вопросы
-                AddQuestionsToTest(test.test_id);
 
-                MessageBox.Show("Тест успешно сохранен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (currentQuestion != null)
+                {
+                    currentQuestion.question_text = NameQuestion.Text.Trim();
+                    currentQuestion.answer_1 = Ans1.Text.Trim();
+                    currentQuestion.answer_2 = Ans2.Text.Trim();
+                    currentQuestion.answer_3 = Ans3.Text.Trim();
+                    currentQuestion.answer_4 = Ans4.Text.Trim();
+                    currentQuestion.correct_answer = int.Parse(CorrectAnswer.Text.Trim());
+                }
+                else
+                {
+                    
+                    currentQuestion = new question
+                    {
+                        test_id = currentTest.test_id,
+                        question_text = NameQuestion.Text.Trim(),
+                        answer_1 = Ans1.Text.Trim(),
+                        answer_2 = Ans2.Text.Trim(),
+                        answer_3 = Ans3.Text.Trim(),
+                        answer_4 = Ans4.Text.Trim(),
+                        correct_answer = int.Parse(CorrectAnswer.Text.Trim())
+                    };
+                    db.questions.Add(currentQuestion);
+                }
+
+                db.SaveChanges();
+
+                MessageBox.Show("Данные успешно сохранены", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -64,7 +101,7 @@ namespace Tests.Pages
 
         private void AddQuestionsToTest(int testId)
         {
-            // Получаем данные для вопроса из полей ввода
+            
             string questionText = NameQuestion.Text.Trim();
             string ans1 = Ans1.Text.Trim();
             string ans2 = Ans2.Text.Trim();
@@ -72,7 +109,7 @@ namespace Tests.Pages
             string ans4 = Ans4.Text.Trim();
             int correctAnswer;
 
-            // Проверка на пустые поля
+            
             if (string.IsNullOrEmpty(questionText) || string.IsNullOrEmpty(ans1) ||
                 string.IsNullOrEmpty(ans2) || string.IsNullOrEmpty(ans3) || string.IsNullOrEmpty(ans4) ||
                 !int.TryParse(CorrectAnswer.Text.Trim(), out correctAnswer) || correctAnswer < 1 || correctAnswer > 4)
@@ -81,7 +118,7 @@ namespace Tests.Pages
                 return;
             }
 
-            // Создаем новый вопрос
+
             var question = new question
             {
                 test_id = testId,
@@ -94,48 +131,25 @@ namespace Tests.Pages
             };
 
             db.questions.Add(question);
-            db.SaveChanges(); // Сохраняем вопрос в БД
+            db.SaveChanges();
         }
 
         private void BtnAddQuestion_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем данные для вопроса из полей ввода
-            string questionText = NameQuestion.Text.Trim();
-            string ans1 = Ans1.Text.Trim();
-            string ans2 = Ans2.Text.Trim();
-            string ans3 = Ans3.Text.Trim();
-            string ans4 = Ans4.Text.Trim();
-            int correctAnswer;
-
-            // Проверка на пустые поля
-            if (string.IsNullOrEmpty(questionText) || string.IsNullOrEmpty(ans1) ||
-                string.IsNullOrEmpty(ans2) || string.IsNullOrEmpty(ans3) || string.IsNullOrEmpty(ans4) ||
-                !int.TryParse(CorrectAnswer.Text.Trim(), out correctAnswer) || correctAnswer < 1 || correctAnswer > 4)
+            if (currentTest == null)
             {
-                MessageBox.Show("Все поля должны быть заполнены и правильный ответ должен быть от 1 до 4", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Сначала создайте или выберите тест", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             try
             {
-                // Добавляем вопрос в базу данных
-                var question = new question
-                {
-                    test_id = 1, // Здесь можно указать нужный тест, если его ID уже есть, например, тест, для которого добавляются вопросы
-                    question_text = questionText,
-                    answer_1 = ans1,
-                    answer_2 = ans2,
-                    answer_3 = ans3,
-                    answer_4 = ans4,
-                    correct_answer = correctAnswer
-                };
-
-                db.questions.Add(question);
-                db.SaveChanges(); // Сохраняем вопрос в БД
+                
+                AddQuestionsToTest(currentTest.test_id);
 
                 MessageBox.Show("Вопрос успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Очищаем все поля для ввода нового вопроса
+                
                 NameQuestion.Clear();
                 Ans1.Clear();
                 Ans2.Clear();

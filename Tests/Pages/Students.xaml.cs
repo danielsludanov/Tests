@@ -3,15 +3,14 @@ using System.Windows.Controls;
 
 namespace Tests.Pages
 {
-    
-    public partial class Reports : Page
+    public partial class Students : Page
     {
         private readonly TestsEntities db;
-        public Reports()
+        public Students()
         {
             InitializeComponent();
             db = new TestsEntities();
-            DataGridReports.ItemsSource = db.test_results.ToList();
+            DataGridsStudents.ItemsSource = db.students.ToList();
         }
     }
 }

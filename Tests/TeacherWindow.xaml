@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tests"
         mc:Ignorable="d"
-        Title="TeacherWindow" Height="800" Width="1280">
+        Title="TeacherWindow" Height="800" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Button x:Name="goBackButton" Content="Назад" Style="{StaticResource AButton}" Width="120" Grid.Row="1" HorizontalAlignment="Left" Margin="5" Click="goBackButton_Click"/>
     </Grid>
 </Window>
