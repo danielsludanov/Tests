@@ -1,0 +1,35 @@
+﻿<Window x:Class="Tests.Authentication.Reg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tests.Authentication"
+        mc:Ignorable="d"
+            Title="Тестирование студентов" Height="800" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Orientation="Vertical" Width="500" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Label Name="AuthHeader" Content="Регистрация" Style="{StaticResource Headers}" FontSize="22" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+
+            <Label Name="Login" Content="Логин" Style="{StaticResource Headers}" FontSize="16" Padding="10"/>
+            <TextBox x:Name="UserLogin" Style="{StaticResource ATextbox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
+
+            <Label Name="Password" Content="Пароль" Style="{StaticResource Headers}" Padding="10"/>
+            <PasswordBox x:Name="UserPassword" Style="{StaticResource APasswordBox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
+
+            <Label Name="Role" Content="Роль" Style="{StaticResource Headers}" Padding="10"/>
+            <ComboBox x:Name="Roles" Margin=" 0 0 0 15" Style="{StaticResource Comboboxes}"/>
+
+            <Button x:Name="BtnReg" Content="Войти" Style="{StaticResource AButton}" Click="BtnReg_Click" Width="120" Margin="0 0 0 16" Height="30"/>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Texts}">
+            <Run Text="Есть аккаунт?"/>
+            <Hyperlink x:Name="LinkAuth" Click="LinkAuth_Click" Style="{StaticResource HyperLinks}">Авторизоваться</Hyperlink>
+            </TextBlock>
+
+        </StackPanel>
+    </Grid>
+</Window>

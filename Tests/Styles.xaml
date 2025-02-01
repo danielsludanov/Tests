@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="Headers" TargetType="Label">
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="DarkSlateGray"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+
+    <Style x:Key="ATextbox" TargetType="TextBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        <Setter Property="Foreground" Value="DarkSlateGray"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        
+    </Style>
+
+    <Style x:Key="APasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        <Setter Property="Foreground" Value="DarkSlateGray"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+
+    </Style>
+
+    <Style x:Key="AButton" TargetType="Button">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Background" Value="DarkSlateGray"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+    </Style>
+
+    <Style x:Key="Texts" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="DarkSlateGray"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+    </Style>
+
+    <Style x:Key="HyperLinks" TargetType="Hyperlink">
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="DarkSlateGray"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+    </Style>
+
+    <Style x:Key="Comboboxes" TargetType="ComboBox">
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="DarkSlateGray"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+    </Style>
+
+</ResourceDictionary>
