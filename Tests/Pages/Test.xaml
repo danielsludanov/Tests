@@ -28,11 +28,11 @@
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
-                <!-- Тип теста -->
+                
                 <TextBlock x:Name="TypeOfTest_TextBlock" FontSize="18" FontWeight="Bold" Foreground="DarkSlateGray" 
                TextAlignment="Center" Margin="0,0,0,20"/>
 
-                <!-- Вопрос -->
+                
                 <Border BorderThickness="1" BorderBrush="Gray" Padding="10" Background="#F9F9F9" CornerRadius="5">
                     <StackPanel>
                         <TextBlock Text="Вопрос" FontSize="20" FontWeight="Bold" Foreground="Black"/>
@@ -40,22 +40,17 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Варианты ответов -->
+                
                 <StackPanel Orientation="Vertical" Margin="0,20,0,20">
-                    <RadioButton x:Name="Answer1_Btn" GroupName="Answers_RBtn" Content="Ответ 1" FontSize="16" Padding="5"/>
-                    <RadioButton x:Name="Answer2_Btn" GroupName="Answers_RBtn" Content="Ответ 2" FontSize="16" Padding="5"/>
-                    <RadioButton x:Name="Answer3_Btn" GroupName="Answers_RBtn" Content="Ответ 3" FontSize="16" Padding="5"/>
-                    <RadioButton x:Name="Answer4_Btn" GroupName="Answers_RBtn" Content="Ответ 4" FontSize="16" Padding="5"/>
+                    <RadioButton x:Name="Answer1_Btn" GroupName="Answers_RBtn" Content="Ответ 1" FontSize="16" Padding="5" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                    <RadioButton x:Name="Answer2_Btn" GroupName="Answers_RBtn" Content="Ответ 2" FontSize="16" Padding="5"  VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                    <RadioButton x:Name="Answer3_Btn" GroupName="Answers_RBtn" Content="Ответ 3" FontSize="16" Padding="5"  VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                    <RadioButton x:Name="Answer4_Btn" GroupName="Answers_RBtn" Content="Ответ 4" FontSize="16" Padding="5"  VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                 </StackPanel>
 
-                <!-- Кнопки управления -->
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="NextQuestion_Btn" Width="150" Height="45" Background="Wheat" 
-                Foreground="White" FontSize="18" FontWeight="Bold" Content="Далее"
-                BorderThickness="0"/>
-                    <Button x:Name="StopTest_Btn" Width="150" Height="45" Background="DarkRed" 
-                Foreground="White" FontSize="18" FontWeight="Bold" Content="Завершить"
-                BorderThickness="0"/>
+                    <Button x:Name="NextQuestion_Btn" Style="{StaticResource AButton}" Content="Далее" Click="NextQuestion_Btn_Click"/>
                 </StackPanel>
 
             </StackPanel>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure.Interception;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
@@ -53,6 +51,11 @@ namespace Tests.Pages
             Answer2_Btn.Content = question.answer_2;
             Answer3_Btn.Content = question.answer_3;
             Answer4_Btn.Content = question.answer_4;
+
+            Answer1_Btn.Tag = (question.correct_answer == 1);
+            Answer2_Btn.Tag = (question.correct_answer == 2);
+            Answer3_Btn.Tag = (question.correct_answer == 3);
+            Answer4_Btn.Tag = (question.correct_answer == 4);
         }
 
         private void StartTest_Btn_Click(object sender, RoutedEventArgs e)
@@ -96,6 +99,58 @@ namespace Tests.Pages
             }
         }
 
+        private void NextQuestion_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedAnswer = GetAnswer();
+            if (selectedAnswer != null && (bool)selectedAnswer.Tag)
+            {
+                RightAnswer++;
+            }
+
+            Answer1_Btn.IsChecked = false;
+            Answer2_Btn.IsChecked = false;
+            Answer3_Btn.IsChecked = false;
+            Answer4_Btn.IsChecked = false;
+
+            StudentMark = GetStudentMark(RightAnswer, (double)CurrentQuestions.Count);
+
+            if (CurrentQuestions != null && CurrentQuestionID < CurrentQuestions.Count - 1)
+            {
+                CurrentQuestionID++;
+                ShowQuestion(CurrentQuestions[CurrentQuestionID]);
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вопросы кончились, завершить тест?", "Тест", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    SP_Test.Visibility = Visibility.Collapsed;
+                    mark_box.Visibility = Visibility.Visible;
+                    mark_box.Text = $"Оценка - {StudentMark}";
+                }
+            }
+        }
+
+        private int GetStudentMark(double QuestionCorrect, double QuestionCount)
+        {
+            double percent = QuestionCorrect / QuestionCount;
+            if (percent > 0 && percent < 0.5)
+            {
+                return 2;
+            }
+            if (percent >= 0.5 && percent < 0.7)
+            {
+                return 3;
+            }
+            if (percent >= 0.7 && percent < 0.9)
+            {
+                return 4;
+            }
+            else
+            {
+                return 5;
+            }
+        }
     }
 
 }
