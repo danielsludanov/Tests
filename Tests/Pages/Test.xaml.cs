@@ -127,6 +127,7 @@ namespace Tests.Pages
                     SP_Test.Visibility = Visibility.Collapsed;
                     mark_box.Visibility = Visibility.Visible;
                     mark_box.Text = $"Оценка - {StudentMark}";
+                    MarkToDB(StudentMark);
                 }
             }
         }
@@ -150,6 +151,37 @@ namespace Tests.Pages
             {
                 return 5;
             }
+        }
+
+        private void MarkToDB(int mark)
+        {
+            try
+            {
+                var student = db.students.FirstOrDefault(s => s.user_id == CurrentUserID);
+                if (student == null)
+                {
+                    MessageBox.Show("Ошибка: студент не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                {
+                    
+                }
+                var studentMark = new test_results
+                {
+                    test_id = CurrentTestID,
+                    student_id = student.student_id,
+                    test_duration_minutes = 60,
+                    mark = mark
+                };
+
+                db.test_results.Add(studentMark);
+                db.SaveChanges();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 
