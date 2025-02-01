@@ -24,21 +24,7 @@ namespace Tests
         {
             InitializeComponent();
             FrameManager.MainFrame = MainFrame;
-        }
-
-        private void BtnAddTest_Click(object sender, RoutedEventArgs e)
-        {
-            FrameManager.MainFrame.Navigate(new AddTestPage());
-        }
-
-        private void BtnStudents_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnReports_Click(object sender, RoutedEventArgs e)
-        {
-            FrameManager.MainFrame.Navigate(new Reports());
+            FrameManager.MainFrame.Navigate(new MainPage());
         }
     }
 }

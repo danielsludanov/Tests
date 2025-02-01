@@ -7,16 +7,6 @@
         mc:Ignorable="d"
         Title="TeacherWindow" Height="800" Width="1280">
     <Grid>
-        <StackPanel Orientation="Vertical" Width="500" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Label Content="Панель управления учителя" Style="{StaticResource Headers}" FontSize="22" Margin="0 0 0 10"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button x:Name="BtnAddTest" Content="Создать тест" Style="{StaticResource AButton}" Margin="0 0 10 0" Click="BtnAddTest_Click"/>
-                <Button x:Name="BtnStudents" Content="Студенты" Style="{StaticResource AButton}" Margin="0 0 10 0" Click="BtnStudents_Click"/>
-                <Button x:Name="BtnReports" Content="Отчеты" Style="{StaticResource AButton}" Margin="0 0 10 0" Click="BtnReports_Click"/>
-            </StackPanel>
-        </StackPanel>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

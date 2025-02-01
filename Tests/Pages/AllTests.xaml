@@ -1,0 +1,38 @@
+﻿<Page x:Class="Tests.Pages.AllTests"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Tests.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1280"
+      Title="AllTests">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="377*"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" x:Name="DataGridTests" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Тест" Width="*" Binding="{Binding test.test_name}"/>
+                <DataGridTextColumn Header="Вопрос" Width="*" Binding="{Binding question_text}"/>
+                <DataGridTextColumn Header="Ответ №1" Width="*" Binding="{Binding answer_1}"/>
+                <DataGridTextColumn Header="Ответ №2" Width="*" Binding="{Binding answer_2}"/>
+                <DataGridTextColumn Header="Ответ №3" Width="*" Binding="{Binding answer_3}"/>
+                <DataGridTextColumn Header="Ответ №4" Width="*" Binding="{Binding answer_4}"/>
+                <DataGridTextColumn Header="Правильный ответ" Width="*" Binding="{Binding correct_answer}"/>
+
+                <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnEdit" Content="Редактировать" ToolTip="Нажав на кнопку, Вы можете редактировать запись" Style="{StaticResource AButton}" Width="100" FontSize="12" Click="BtnEdit_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" x:Name="BtnAdd" Content="Добавить" HorizontalAlignment="Left" Margin="15" Style="{StaticResource AButton}" Height="40" ToolTip="Нажав на кнопку, Вы можете добавить запись." Width="150" VerticalAlignment="Center" Click="BtnAdd_Click"/>
+        <Button Grid.Row="1" x:Name="BtnDelete" Content="Удалить" HorizontalAlignment="Right" Margin="15" Style="{StaticResource AButton}" Height="40" ToolTip="Нажав на кнопку, Вы можете удалить запись." Width="150" VerticalAlignment="Center" Click="BtnDelete_Click"/>
+    </Grid>
+</Page>
