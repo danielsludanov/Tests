@@ -16,14 +16,22 @@
 
             <Label Name="Login" Content="Логин" Style="{StaticResource Headers}" FontSize="16" Padding="10"/>
             <TextBox x:Name="UserLogin" Style="{StaticResource ATextbox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
-
+                
+            
             <Label Name="Password" Content="Пароль" Style="{StaticResource Headers}" Padding="10"/>
             <PasswordBox x:Name="UserPassword" Style="{StaticResource APasswordBox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
 
             <Label Name="Role" Content="Роль" Style="{StaticResource Headers}" Padding="10"/>
-            <ComboBox x:Name="Roles" Margin=" 0 0 0 15" Style="{StaticResource Comboboxes}"/>
+            <ComboBox x:Name="Roles" Margin=" 0 0 0 10" Style="{StaticResource Comboboxes}"/>
+
+            <Label Name="Group" Content="Учебная группа" Style="{StaticResource Headers}" Padding="10"/>
+            <ComboBox x:Name="StudyGroup" Margin=" 0 0 0 10" Style="{StaticResource Comboboxes}"/>
+            <Label Content="ФИО" Style="{StaticResource Headers}"/>
+            <TextBox x:Name="FIO" Style="{StaticResource ATextbox}" Margin="0 0 0 10"/>
 
             <Button x:Name="BtnReg" Content="Войти" Style="{StaticResource AButton}" Click="BtnReg_Click" Width="120" Margin="0 0 0 16" Height="30"/>
+
+            
 
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Texts}">
             <Run Text="Есть аккаунт?"/>

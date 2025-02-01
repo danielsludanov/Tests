@@ -77,8 +77,9 @@ namespace Tests.Authentication
 
                 MessageBox.Show("Вы авторизовались!");
 
-                ((App)Application.Current).CurrentRoleID = (int)userToCheck.role_id;
-                ((App)Application.Current).CurrentUserID = userToCheck.user_id;
+                var app = (App)Application.Current;
+                app.SetCurrentID(userToCheck.user_id);  // Устанавливаем CurrentUserID
+                app.SetCurrentRole((int)userToCheck.role_id);
 
                 if (userToCheck.role_id == 1)
                 {

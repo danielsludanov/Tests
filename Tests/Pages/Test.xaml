@@ -1,0 +1,64 @@
+﻿<Page x:Class="Tests.Pages.Test"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Tests.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1280"
+      Title="Тестирование">
+
+    <Grid Background="White">
+        <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="10" Background="#F9F9F9" Padding="20" Width="400" Height="300">
+            <StackPanel VerticalAlignment="Center">
+                <StackPanel x:Name="SP_Start" Visibility="Visible" HorizontalAlignment="Center">
+                    <TextBlock Text="Выберите тест" FontSize="32" FontWeight="Bold" Margin="0,0,0,20" TextAlignment="Center" Style="{StaticResource Texts}"/>
+
+                    <ComboBox Name="TypeOfTest_Box" Height="40" FontSize="18" Padding="5" Background="White" BorderBrush="Gray" Style="{StaticResource Comboboxes}"/>
+
+                    <Button x:Name="StartTest_Btn" Click="StartTest_Btn_Click" Content="Начать тест" Height="25" Width="120" FontSize="14"
+                BorderBrush="Gray" Margin="0,20,0,0" Style="{StaticResource AButton}"/>
+                </StackPanel>
+                <TextBlock x:Name="mark_box" FontSize="48" HorizontalAlignment="Center" Visibility="Collapsed"/>
+            </StackPanel>
+        </Border>
+
+        <Border Background="White" Padding="20" CornerRadius="10" BorderBrush="LightGray" BorderThickness="2"
+    HorizontalAlignment="Center" Width="600" Height="400" Visibility="Collapsed" x:Name="SP_Test">
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+
+                <!-- Тип теста -->
+                <TextBlock x:Name="TypeOfTest_TextBlock" FontSize="18" FontWeight="Bold" Foreground="DarkSlateGray" 
+               TextAlignment="Center" Margin="0,0,0,20"/>
+
+                <!-- Вопрос -->
+                <Border BorderThickness="1" BorderBrush="Gray" Padding="10" Background="#F9F9F9" CornerRadius="5">
+                    <StackPanel>
+                        <TextBlock Text="Вопрос" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                        <TextBlock x:Name="Question1_Box" FontSize="16" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Варианты ответов -->
+                <StackPanel Orientation="Vertical" Margin="0,20,0,20">
+                    <RadioButton x:Name="Answer1_Btn" GroupName="Answers_RBtn" Content="Ответ 1" FontSize="16" Padding="5"/>
+                    <RadioButton x:Name="Answer2_Btn" GroupName="Answers_RBtn" Content="Ответ 2" FontSize="16" Padding="5"/>
+                    <RadioButton x:Name="Answer3_Btn" GroupName="Answers_RBtn" Content="Ответ 3" FontSize="16" Padding="5"/>
+                    <RadioButton x:Name="Answer4_Btn" GroupName="Answers_RBtn" Content="Ответ 4" FontSize="16" Padding="5"/>
+                </StackPanel>
+
+                <!-- Кнопки управления -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="NextQuestion_Btn" Width="150" Height="45" Background="Wheat" 
+                Foreground="White" FontSize="18" FontWeight="Bold" Content="Далее"
+                BorderThickness="0"/>
+                    <Button x:Name="StopTest_Btn" Width="150" Height="45" Background="DarkRed" 
+                Foreground="White" FontSize="18" FontWeight="Bold" Content="Завершить"
+                BorderThickness="0"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

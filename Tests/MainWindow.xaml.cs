@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tests.Pages;
 
 namespace Tests
 {
 
     public partial class MainWindow : Window
     {
+        private readonly int CurrentUserID;
         public bool isNav = false;
         public MainWindow()
         {
             InitializeComponent();
+            CurrentUserID = ((App)Application.Current).CurrentUserID;
+
+            FrameManager.MainFrame  = MainFrame;
+            FrameManager.MainFrame.Navigate(new Test());
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
